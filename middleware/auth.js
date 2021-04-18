@@ -6,6 +6,7 @@ const User = require("../model/user");
 
 //Protect routes
 exports.protect = asyncHandler(async (req, res, next) => {
+  console.log("Here")
   let token;
 
   if (
@@ -14,6 +15,9 @@ exports.protect = asyncHandler(async (req, res, next) => {
   ) {
     // Set token from Bearer token in header
     token = req.headers.authorization.split(" ")[1];
+    console.log(token)
+  }else{
+    console.log("No token")
   }
 
   //Make sure token exist

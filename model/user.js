@@ -4,49 +4,30 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
-  firstName : {
-        type : String,
-        // required : [true,'Enter first name']
-    },
-    lastName : {
-        type : String,
-        // required : [true,'Enter last name']
-    },
-    
-    password: {
-        type: String,
-        // required: [true, "Please add a password"],
-        minlength: 6,
-        select: false, // it will not return the password when quering
-      },
-
-    address: {
-      type: String
-      },
-  
-    phone: {
-        type: String,
-        // required : [true,'Enter phone number']
-        },
-
-    email: {
-            type: String,
-            // required : true,
-            unique : true
-            },
+  fname : {
+    type : String,
+    required : [true,'Enter first Name']
+},
+lname : {
+  type : String,
+  required : [true,'Enter last Name']
+},
+username : {
+    type : String,
+    required : [true,'Enter Username'],
+},
+password: {
+    type: String,
+    required: [true, "Please add a password"],
+    minlength: 5,
+    select: false, // it will not return the password when quering
+  },
     
     photo: {
       type: String,
       default: "no-photo.jpg",
     },
-
-    userType: {
-      type: String,
-      // required : true,
-      enum:['Admin','Customer'],
-      default:'Customer'
-      }
-              
+   
 });
 
 UserSchema.methods.getSignedJwtToken = function () {
